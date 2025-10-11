@@ -8,5 +8,4 @@ data class Debt (
     @PrimaryKey val id: Int,
     val status: Int,
     val amount: Double,
-    val numeroPrestacoes: Int,
 )
