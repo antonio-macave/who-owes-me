@@ -9,18 +9,18 @@ import mz.co.macave.whoowesme.model.Debtor
 @Dao
 interface DebtorDao {
 
-    @Query("SELECT * FROM debtor")
-    fun getAllDebtors(): List<Debtor>
+    @Query("SELECT * FROM debtors")
+    suspend fun getAllDebtors(): List<Debtor>
 
-    @Query("SELECT * FROM debtor WHERE id IN (:debtorIds)")
-    fun loadAllByIds(debtorIds: IntArray): List<Debtor>
+    @Query("SELECT * FROM debtors WHERE id IN (:debtorIds)")
+    suspend fun loadAllByIds(debtorIds: IntArray): List<Debtor>
 
-    @Query("SELECT * FROM debtor WHERE name LIKE :name AND surname LIKE :surname LIMIT 1")
-    fun findByName(name: String, surname: String): Debtor
+    @Query("SELECT * FROM debtors WHERE name LIKE :name AND surname LIKE :surname LIMIT 1")
+    suspend fun findByName(name: String, surname: String): Debtor
 
     @Insert
-    fun insertAll(vararg debtors: Debtor)
+    suspend fun insertAll(vararg debtors: Debtor)
 
     @Delete
-    fun delete(debtor: Debtor)
+    suspend fun delete(debtor: Debtor)
 }

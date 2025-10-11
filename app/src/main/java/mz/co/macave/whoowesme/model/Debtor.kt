@@ -3,7 +3,7 @@ package mz.co.macave.whoowesme.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "debtors")
 data class Debtor(
     @PrimaryKey val id: Int,
     val name: String,
