@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -49,6 +50,20 @@ fun AmountField() {
             suffix = { Text(text = "MZN") }
         )
     }
+}
+
+@Composable
+fun DueToDate() {
+    var date by remember { mutableStateOf("") }
+    TextField(
+        modifier = Modifier.width(256.dp),
+        value = date,
+        onValueChange = {
+            date = it
+        },
+        label = { Text(text = stringResource(R.string.due_date)) },
+        singleLine = true
+    )
 }
 
 @Composable
