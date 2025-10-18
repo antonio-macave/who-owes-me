@@ -6,8 +6,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -53,8 +57,36 @@ fun AmountField() {
 }
 
 @Composable
-fun DueToDate() {
+fun DueToDate(onDialogRequestListener: () -> Unit) {
     var date by remember { mutableStateOf("") }
+    var showDialog by remember { mutableStateOf(true) }
+
+    if (showDialog) {
+        val datePickerState = rememberDatePickerState()
+        DatePickerDialog(
+            onDismissRequest = onDialogRequestListener,
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showDialog = false
+                        datePickerState.selectedDateMillis
+                    }
+                ) {
+                    Text(text = stringResource(android.R.string.ok))
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { showDialog = false }
+                ) {
+                    Text(text = stringResource(android.R.string.cancel))
+                }
+            },
+        ) {
+            DatePicker(state = datePickerState)
+        }
+    }
+
     TextField(
         modifier = Modifier.width(256.dp),
         value = date,
@@ -111,5 +143,7 @@ fun NameFields() {
 @Preview
 @Composable
 fun CreateDebtPreviews() {
-    AmountField()
+    //AmountField()
+    //NameFields()
+    DueToDate() {}
 }
