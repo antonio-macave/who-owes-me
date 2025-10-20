@@ -35,7 +35,7 @@ fun CreateDebt() {
 fun AmountField() {
     Row(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp)
             .fillMaxWidth()
     ) {
 
@@ -88,7 +88,8 @@ fun DueDate(onDialogRequestListener: () -> Unit) {
     }
 
     TextField(
-        modifier = Modifier.width(256.dp),
+        modifier = Modifier.width(256.dp)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
         value = date,
         onValueChange = {
             date = it
