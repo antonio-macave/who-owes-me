@@ -94,7 +94,8 @@ fun DueDate(onDialogRequestListener: () -> Unit) {
             date = it
         },
         label = { Text(text = stringResource(R.string.due_date)) },
-        singleLine = true
+        singleLine = true,
+        trailingIcon = { Icon(imageVector = Icons.Default.DateRange, contentDescription = null) }
     )
 }
 
