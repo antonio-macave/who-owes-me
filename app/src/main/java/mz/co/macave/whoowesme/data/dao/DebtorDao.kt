@@ -1,4 +1,4 @@
-package mz.co.macave.whoowesme.dao
+package mz.co.macave.whoowesme.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
