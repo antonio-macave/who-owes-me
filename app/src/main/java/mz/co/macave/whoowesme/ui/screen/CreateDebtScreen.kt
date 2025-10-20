@@ -57,7 +57,7 @@ fun AmountField() {
 }
 
 @Composable
-fun DueToDate(onDialogRequestListener: () -> Unit) {
+fun DueDate(onDialogRequestListener: () -> Unit) {
     var date by remember { mutableStateOf("") }
     var showDialog by remember { mutableStateOf(true) }
 
