@@ -8,19 +8,22 @@ import kotlinx.coroutines.flow.asStateFlow
 class CreateDebtViewModel : ViewModel() {
 
     private val _name = MutableStateFlow("")
-    val name: StateFlow<String> = _name.asStateFlow()
+    val name: StateFlow<String> get() = _name.asStateFlow()
 
     private val _surname = MutableStateFlow("")
-    val surname: StateFlow<String> = _surname.asStateFlow()
+    val surname: StateFlow<String> get() = _surname.asStateFlow()
 
     private val _dueDate = MutableStateFlow("")
-    val dueDate: StateFlow<String> = _dueDate.asStateFlow()
+    val dueDate: StateFlow<String> get() = _dueDate.asStateFlow()
 
     private val _description = MutableStateFlow("")
-    val description: StateFlow<String> = _description.asStateFlow()
+    val description: StateFlow<String> get() = _description.asStateFlow()
+
+    private val _showDueDateDialog = MutableStateFlow(false)
+    val showDueDateDialog: StateFlow<Boolean> get() = _showDueDateDialog.asStateFlow()
 
     private val _amount = MutableStateFlow(0.0)
-    val amount: StateFlow<Double> = _amount.asStateFlow()
+    val amount: StateFlow<Double> get() = _amount.asStateFlow()
 
     fun updateName(newValue: String) {
         _name.value = newValue
@@ -36,6 +39,10 @@ class CreateDebtViewModel : ViewModel() {
 
     fun updateDescription(newValue: String) {
         _description.value = newValue
+    }
+
+    fun updateShowDueDateDialog(newValue: Boolean) {
+        _showDueDateDialog.value = newValue
     }
 
 }
