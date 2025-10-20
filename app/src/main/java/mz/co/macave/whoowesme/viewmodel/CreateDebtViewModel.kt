@@ -22,4 +22,20 @@ class CreateDebtViewModel : ViewModel() {
     private val _amount = MutableStateFlow(0.0)
     val amount: StateFlow<Double> = _amount.asStateFlow()
 
+    fun updateName(newValue: String) {
+        _name.value = newValue
+    }
+
+    fun updateSurname(newValue: String) {
+        _surname.value = newValue
+    }
+
+    fun updateDueDate(newValue: String) {
+        _dueDate.value = newValue
+    }
+
+    fun updateDescription(newValue: String) {
+        _description.value = newValue
+    }
+
 }
