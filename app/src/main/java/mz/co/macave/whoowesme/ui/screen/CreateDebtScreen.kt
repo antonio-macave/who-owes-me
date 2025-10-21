@@ -142,6 +142,36 @@ fun NameFields() {
     }
 }
 
+@Composable
+fun DescriptionField() {
+    var description by remember { mutableStateOf("") }
+    TextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        value = description,
+        label = { Text(text = stringResource(R.string.description)) },
+        onValueChange = { description = it },
+        minLines = 3,
+        maxLines = 3
+    )
+}
+
+@Composable
+fun AdditionalNotesField() {
+    var additionalNotes by remember { mutableStateOf("") }
+    TextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        value = additionalNotes,
+        label = { Text(text = stringResource(R.string.additional_notes)) },
+        onValueChange = { additionalNotes = it },
+        minLines = 4,
+        maxLines = 4
+    )
+}
+
 @Preview
 @Composable
 fun CreateDebtPreviews() {
