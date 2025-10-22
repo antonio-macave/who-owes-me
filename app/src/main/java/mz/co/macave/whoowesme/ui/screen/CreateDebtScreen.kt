@@ -1,24 +1,38 @@
 package mz.co.macave.whoowesme.ui.screen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.ToggleButton
+import androidx.compose.material3.ToggleButtonDefaults
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -29,6 +43,46 @@ import mz.co.macave.whoowesme.R
 @Composable
 fun CreateDebt() {
 
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+fun DebtorSituationSelector(onOptionSelected: (String) -> Unit) {
+
+    val options = listOf(stringResource(R.string.existing), stringResource(R.string.new_one))
+    var selectedIndex by remember { mutableIntStateOf(0) }
+
+    Row(
+        modifier = Modifier
+            .padding(horizontal = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween)
+    ) {
+        val modifiers = listOf(Modifier.weight(1f), Modifier.weight(1f))
+        options.forEachIndexed { index, option ->
+            ToggleButton(
+                modifier = modifiers[index].semantics { role = Role.RadioButton },
+                checked = (index == selectedIndex),
+                onCheckedChange = {
+                    selectedIndex = index
+                    onOptionSelected(option)
+                },
+                shapes = when (index) {
+                    0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
+                    options.lastIndex -> ButtonGroupDefaults.connectedTrailingButtonShapes()
+                    else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
+                }
+            ) {
+                if (index == selectedIndex) {
+                    Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = null
+                    )
+                }
+                Spacer(modifier = Modifier.width(ToggleButtonDefaults.IconSpacing))
+                Text(text = options[index])
+            }
+        }
+    }
 }
 
 @Composable
@@ -59,7 +113,7 @@ fun AmountField() {
 @Composable
 fun DueDate(onDialogRequestListener: () -> Unit) {
     var date by remember { mutableStateOf("") }
-    var showDialog by remember { mutableStateOf(true) }
+    var showDialog by remember { mutableStateOf(false) }
 
     if (showDialog) {
         val datePickerState = rememberDatePickerState()
