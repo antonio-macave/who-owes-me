@@ -124,6 +124,7 @@ fun ExistingDebtorSelector(onItemClick: (String) -> Unit) {
                 suggestions.forEach { item ->
                     DropdownMenuItem(
                         text = { Text(text = item) },
+                        leadingIcon = { if (item == text) { Icon(imageVector = Icons.Default.Check, contentDescription = null) } },
                         onClick = {
                             text = item
                             onItemClick(item)
