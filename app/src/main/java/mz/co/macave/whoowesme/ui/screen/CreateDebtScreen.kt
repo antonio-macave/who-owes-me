@@ -14,7 +14,12 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -80,6 +85,52 @@ fun DebtorSituationSelector(onOptionSelected: (String) -> Unit) {
                 }
                 Spacer(modifier = Modifier.width(ToggleButtonDefaults.IconSpacing))
                 Text(text = options[index])
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ExistingDebtorSelector(onItemClick: (String) -> Unit) {
+
+    var text by remember { mutableStateOf("") }
+    val suggestions = listOf("António", "Elias", "Shelton", "Isildo", "Arsénio")
+    var expanded by remember { mutableStateOf(true) }
+
+    Column {
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = { expanded = !expanded },
+        ) {
+
+            TextField(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .fillMaxWidth()
+                    .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryEditable, true),
+                value = text,
+                onValueChange = { text = it },
+                label = { Text(text = stringResource(R.string.debtor)) },
+                singleLine = true,
+                readOnly = true,
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) }
+            )
+
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                suggestions.forEach { item ->
+                    DropdownMenuItem(
+                        text = { Text(text = item) },
+                        onClick = {
+                            text = item
+                            onItemClick(item)
+                            expanded = false
+                        }
+                    )
+                }
             }
         }
     }
