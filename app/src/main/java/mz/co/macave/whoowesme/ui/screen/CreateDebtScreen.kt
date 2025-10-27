@@ -1,5 +1,6 @@
 package mz.co.macave.whoowesme.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,6 +22,7 @@ import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -123,6 +125,7 @@ fun ExistingDebtorSelector(onItemClick: (String) -> Unit) {
             ) {
                 suggestions.forEach { item ->
                     DropdownMenuItem(
+                        modifier = Modifier.background(color = if (item == text) MaterialTheme.colorScheme.primary.copy(alpha = 0.1f) else MaterialTheme.colorScheme.background),
                         text = { Text(text = item) },
                         leadingIcon = { if (item == text) { Icon(imageVector = Icons.Default.Check, contentDescription = null) } },
                         onClick = {
