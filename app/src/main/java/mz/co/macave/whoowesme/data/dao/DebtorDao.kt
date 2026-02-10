@@ -4,7 +4,9 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import mz.co.macave.whoowesme.model.Debtor
+import mz.co.macave.whoowesme.model.DebtorWithDebts
 
 @Dao
 interface DebtorDao {
@@ -17,6 +19,10 @@ interface DebtorDao {
 
     @Query("SELECT * FROM debtors WHERE name LIKE :name OR surname LIKE :surname LIMIT 1")
     suspend fun findByName(name: String, surname: String): Debtor
+
+    @Transaction
+    @Query("SELECT * FROM debts WHERE debtorId = :debtorId")
+    suspend fun getDebtorWithDebts(debtorId: Int): List<DebtorWithDebts>
 
     @Insert
     suspend fun insertAll(vararg debtors: Debtor)
