@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Who Owes Me</string>
+    <string name="name">Nome</string>
+    <string name="surname">Apelido</string>
+    <string name="amount">Montante</string>
+    <string name="transaction">Transação</string>
+    <string name="due_date">Prazo de pagamento</string>
+    <string name="title_activity_create_debt">Criar Dívida</string>
 </resources>

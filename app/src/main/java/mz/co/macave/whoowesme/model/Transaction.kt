@@ -1,11 +1,15 @@
 package mz.co.macave.whoowesme.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.Date
 
+@Entity(tableName = "transactions")
 data class Transaction(
-    val id: Int,
-    val type: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val type: Int = 0,
     val description: String,
     val amount: Double,
-    val date: Date
+    val date: Date,
+    val debtId: Int
 )

@@ -1,8 +1,13 @@
 package mz.co.macave.whoowesme.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "debts")
 data class Debt (
-    val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val status: Int,
+    val description: String,
+    val additionalNotes: String,
     val amount: Double,
-    val numeroPrestacoes: Int,
 )
