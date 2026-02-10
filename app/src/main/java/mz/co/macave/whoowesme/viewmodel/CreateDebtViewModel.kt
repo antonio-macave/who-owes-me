@@ -22,6 +22,14 @@ class CreateDebtViewModel : ViewModel() {
     private val _showDueDateDialog = MutableStateFlow(false)
     val showDueDateDialog: StateFlow<Boolean> get() = _showDueDateDialog.asStateFlow()
 
+    fun areAllFieldsFilled(): Boolean {
+        return false
+    }
+
+    fun areDebtorDetailsFilled(): Boolean {
+        return name.value.isEmpty() && surname.value.isEmpty()
+    }
+
     private val _amount = MutableStateFlow(0.0)
     val amount: StateFlow<Double> get() = _amount.asStateFlow()
 
