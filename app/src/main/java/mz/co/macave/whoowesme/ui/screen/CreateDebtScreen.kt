@@ -96,6 +96,10 @@ fun DebtorSituationSelector(viewModel: CreateDebtViewModel = viewModel(), onOpti
             }
         }
     }
+    when (selectedIndex) {
+        0 -> ExistingDebtorSelector {  }
+        1 -> NameFields()
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
