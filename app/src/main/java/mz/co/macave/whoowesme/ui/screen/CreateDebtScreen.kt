@@ -1,6 +1,7 @@
 package mz.co.macave.whoowesme.ui.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,6 +46,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import mz.co.macave.whoowesme.R
 import mz.co.macave.whoowesme.viewmodel.CreateDebtViewModel
@@ -52,10 +54,13 @@ import mz.co.macave.whoowesme.viewmodel.CreateDebtViewModel
 @Composable
 fun CreateDebt(viewModel: CreateDebtViewModel = viewModel()) {
     //NameFields()
-    AmountField()
-    DueDate {  }
+    AmountField(viewModel)
+    DueDate(viewModel) {  }
     DebtorSituationSelector() { index ->
 
+    }
+    DescriptionField(viewModel)
+    AdditionalNotesField(viewModel)
 }
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -77,7 +82,7 @@ fun DebtorSituationSelector(viewModel: CreateDebtViewModel = viewModel(), onOpti
                 checked = (index == selectedIndex),
                 onCheckedChange = {
                     selectedIndex = index
-                    onOptionSelected(option)
+                    onOptionIndexSelected(index)
                 },
                 shapes = when (index) {
                     0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
@@ -108,7 +113,7 @@ fun ExistingDebtorSelector(onItemClick: (String) -> Unit) {
 
     var text by remember { mutableStateOf("") }
     val suggestions = listOf("António", "Elias", "Shelton", "Isildo", "Arsénio")
-    var expanded by remember { mutableStateOf(true) }
+    var expanded by remember { mutableStateOf(false) }
 
     Column {
         ExposedDropdownMenuBox(
@@ -151,20 +156,20 @@ fun ExistingDebtorSelector(onItemClick: (String) -> Unit) {
 }
 
 @Composable
-fun AmountField() {
+fun AmountField(viewModel: CreateDebtViewModel = viewModel()) {
     Row(
         modifier = Modifier
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .fillMaxWidth()
     ) {
 
-        var amountText by remember { mutableStateOf("") }
+        val amountText by viewModel.amount.collectAsStateWithLifecycle()
         TextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            onValueChange = { text ->
+            onValueChange = { text: String ->
                 val filteredValue = text.replace(".",",")
-                amountText = filteredValue
+                viewModel.updateAmount(filteredValue)
             },
             value = amountText,
             singleLine = true,
@@ -176,9 +181,9 @@ fun AmountField() {
 }
 
 @Composable
-fun DueDate(onDialogRequestListener: () -> Unit) {
+fun DueDate(viewModel: CreateDebtViewModel = viewModel(), onDialogRequestListener: () -> Unit) {
     var date by remember { mutableStateOf("") }
-    var showDialog by remember { mutableStateOf(false) }
+    val showDialog by viewModel.showDueDateDialog.collectAsStateWithLifecycle()
 
     if (showDialog) {
         val datePickerState = rememberDatePickerState()
@@ -187,7 +192,7 @@ fun DueDate(onDialogRequestListener: () -> Unit) {
             confirmButton = {
                 TextButton(
                     onClick = {
-                        showDialog = false
+                        viewModel.updateShowDueDateDialog(false)
                         datePickerState.selectedDateMillis
                     }
                 ) {
@@ -196,7 +201,7 @@ fun DueDate(onDialogRequestListener: () -> Unit) {
             },
             dismissButton = {
                 TextButton(
-                    onClick = { showDialog = false }
+                    onClick = { viewModel.updateShowDueDateDialog(false) }
                 ) {
                     Text(text = stringResource(android.R.string.cancel))
                 }
@@ -207,15 +212,26 @@ fun DueDate(onDialogRequestListener: () -> Unit) {
     }
 
     TextField(
-        modifier = Modifier.width(256.dp)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier = Modifier
+            .width(256.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .clickable {
+                viewModel.updateShowDueDateDialog(true)
+            },
         value = date,
-        onValueChange = {
-            date = it
-        },
+        readOnly = true,
+        onValueChange = { },
         label = { Text(text = stringResource(R.string.due_date)) },
         singleLine = true,
-        trailingIcon = { Icon(imageVector = Icons.Default.DateRange, contentDescription = null) }
+        trailingIcon = {
+            Icon(
+                modifier = Modifier.clickable {
+                    viewModel.updateShowDueDateDialog(true)
+                },
+                imageVector = Icons.Default.DateRange,
+                contentDescription = null
+            )
+        }
     )
 }
 
@@ -262,30 +278,30 @@ fun NameFields() {
 }
 
 @Composable
-fun DescriptionField() {
-    var description by remember { mutableStateOf("") }
+fun DescriptionField(viewModel: CreateDebtViewModel = viewModel()) {
+    val description by viewModel.description.collectAsStateWithLifecycle()
     TextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         value = description,
         label = { Text(text = stringResource(R.string.description)) },
-        onValueChange = { description = it },
+        onValueChange = { viewModel.updateDescription(it) },
         minLines = 3,
         maxLines = 3
     )
 }
 
 @Composable
-fun AdditionalNotesField() {
-    var additionalNotes by remember { mutableStateOf("") }
+fun AdditionalNotesField(viewModel: CreateDebtViewModel = viewModel()) {
+    val additionalNotes by viewModel.additionalNotes.collectAsStateWithLifecycle()
     TextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         value = additionalNotes,
         label = { Text(text = stringResource(R.string.additional_notes)) },
-        onValueChange = { additionalNotes = it },
+        onValueChange = { viewModel.updateAdditionalNotes(it) },
         minLines = 4,
         maxLines = 4
     )
@@ -296,5 +312,6 @@ fun AdditionalNotesField() {
 fun CreateDebtPreviews() {
     //AmountField()
     //NameFields()
-    DueToDate() {}
+    DescriptionField()
+    ExistingDebtorSelector {  }
 }
