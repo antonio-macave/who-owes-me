@@ -10,16 +10,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import mz.co.macave.whoowesme.R
 import mz.co.macave.whoowesme.ui.activities.ui.theme.WhoOwesMeTheme
 import mz.co.macave.whoowesme.ui.screen.AppBar
 import mz.co.macave.whoowesme.ui.screen.CreateDebt
+import mz.co.macave.whoowesme.viewmodel.CreateDebtViewModel
 
 class CreateDebtActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+            val viewModel: CreateDebtViewModel = viewModel()
+
             WhoOwesMeTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -34,7 +39,7 @@ class CreateDebtActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        CreateDebt()
+                        CreateDebt(viewModel)
                     }
                 }
             }
