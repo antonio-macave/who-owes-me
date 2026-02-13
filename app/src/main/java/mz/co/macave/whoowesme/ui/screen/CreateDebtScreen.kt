@@ -45,16 +45,22 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import mz.co.macave.whoowesme.R
+import mz.co.macave.whoowesme.viewmodel.CreateDebtViewModel
 
 @Composable
-fun CreateDebt() {
+fun CreateDebt(viewModel: CreateDebtViewModel = viewModel()) {
+    //NameFields()
+    AmountField()
+    DueDate {  }
+    DebtorSituationSelector() { index ->
 
 }
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun DebtorSituationSelector(onOptionSelected: (String) -> Unit) {
+fun DebtorSituationSelector(viewModel: CreateDebtViewModel = viewModel(), onOptionIndexSelected: (Int) -> Unit) {
 
     val options = listOf(stringResource(R.string.existing), stringResource(R.string.new_one))
     var selectedIndex by remember { mutableIntStateOf(0) }
