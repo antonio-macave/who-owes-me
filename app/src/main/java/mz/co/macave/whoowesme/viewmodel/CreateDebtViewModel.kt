@@ -30,8 +30,8 @@ class CreateDebtViewModel : ViewModel() {
         return name.value.isEmpty() && surname.value.isEmpty()
     }
 
-    private val _amount = MutableStateFlow(0.0)
-    val amount: StateFlow<Double> get() = _amount.asStateFlow()
+    private val _amount = MutableStateFlow("")
+    val amount: StateFlow<String> get() = _amount.asStateFlow()
 
     fun updateName(newValue: String) {
         _name.value = newValue
