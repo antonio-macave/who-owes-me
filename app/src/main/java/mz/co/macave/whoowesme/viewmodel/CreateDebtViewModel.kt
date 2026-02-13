@@ -19,6 +19,9 @@ class CreateDebtViewModel : ViewModel() {
     private val _description = MutableStateFlow("")
     val description: StateFlow<String> get() = _description.asStateFlow()
 
+    private val _additionalNotes = MutableStateFlow("")
+    val additionalNotes: StateFlow<String> get() = _additionalNotes.asStateFlow()
+
     private val _showDueDateDialog = MutableStateFlow(false)
     val showDueDateDialog: StateFlow<Boolean> get() = _showDueDateDialog.asStateFlow()
 
@@ -51,6 +54,14 @@ class CreateDebtViewModel : ViewModel() {
 
     fun updateShowDueDateDialog(newValue: Boolean) {
         _showDueDateDialog.value = newValue
+    }
+
+    fun updateAdditionalNotes(newValue: String) {
+        _additionalNotes.value = newValue
+    }
+
+    fun updateAmount(amount: String) {
+        _amount.value = amount
     }
 
 }
