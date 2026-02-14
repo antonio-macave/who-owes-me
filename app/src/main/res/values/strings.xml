@@ -5,5 +5,12 @@
     <string name="amount">Montante</string>
     <string name="transaction">Transação</string>
     <string name="due_date">Prazo de pagamento</string>
-    <string name="title_activity_create_debt">Criar Dívida</string>
+    <string name="title_activity_create_debt">Registar Dívida</string>
+    <string name="description">Descrição</string>
+    <string name="additional_notes">Notas adicionais</string>
+    <string name="new_one">Novo</string>
+    <string name="existing">Existente</string>
+    <string name="debtor">Devedor</string>
+    <string name="debt">Dívida</string>
+    <string name="more_options">Mais opções</string>
 </resources>
