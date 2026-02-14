@@ -8,6 +8,5 @@ data class Debtor(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val surname: String,
-    val contactNumber: String,
-    val debts: List<Debt>
+    val contactNumber: String
 )
