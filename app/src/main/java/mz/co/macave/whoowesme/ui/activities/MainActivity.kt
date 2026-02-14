@@ -151,7 +151,7 @@ fun TopBar(onActionClick: () -> Unit) {
             IconButton(onClick = onActionClick) {
                 Icon(
                     imageVector = Icons.Default.MoreVert,
-                    contentDescription = "Mais opções"
+                    contentDescription = stringResource(R.string.more_options)
                 )
             }
         },
