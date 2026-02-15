@@ -79,7 +79,7 @@ fun DebtorItem(
             ) {
                 Column {
                     Text(
-                        text = debtor.name,
+                        text = "${debtor.name} ${debtor.surname}",
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Normal
                     )
