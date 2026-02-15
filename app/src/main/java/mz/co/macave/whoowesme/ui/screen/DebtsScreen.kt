@@ -35,15 +35,18 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import mz.co.macave.whoowesme.R
 import mz.co.macave.whoowesme.model.Debt
 import mz.co.macave.whoowesme.model.Debtor
+import mz.co.macave.whoowesme.viewmodel.MainActivityViewModel
 
 
 @Composable
 fun DebtsList(debts: List<Debt>, debtor: Debtor) {
     LazyColumn {
-        itemsIndexed(items =  debts) { index,item_->
+        itemsIndexed(items =  debts) { index, item ->
             DebtorItem(
                 debt = debts[index],
                 debtor = debtor
@@ -53,15 +56,22 @@ fun DebtsList(debts: List<Debt>, debtor: Debtor) {
 }
 
 @Composable
-fun DebtorItem(debt: Debt, debtor: Debtor) {
-    var visible by remember { mutableStateOf(false) }
+fun DebtorItem(
+    viewModel: MainActivityViewModel = viewModel(),
+    debt: Debt,
+    debtor: Debtor
+) {
+    val visible by viewModel.cardExpanded.collectAsStateWithLifecycle()
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable(onClick = { visible = !visible })
+            .clickable(onClick = { viewModel.updateCardExpanded(!visible) }),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
+        )
    ) {
-        Column() {
+        Column {
             Row(
                 modifier = Modifier
                     .padding(16.dp)
