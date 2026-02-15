@@ -10,14 +10,15 @@ class MainActivityViewModel: ViewModel() {
     private val _fabMenuExpanded = MutableStateFlow(false)
     val fabMenuExpanded: StateFlow<Boolean> get() = _fabMenuExpanded.asStateFlow()
 
-    private val _cardExpanded = MutableStateFlow(false)
-    val cardExpanded: StateFlow<Boolean> get() = _cardExpanded.asStateFlow()
+    private val _cardExpanded = MutableStateFlow<Int?>(null)
+    val cardExpanded: StateFlow<Int?> get() = _cardExpanded.asStateFlow()
+
 
     fun updateFabMenuExpanded(expanded: Boolean) {
         _fabMenuExpanded.value = expanded
     }
 
-    fun updateCardExpanded(cardExpanded: Boolean) {
-        _cardExpanded.value = cardExpanded
+    fun updateCardExpanded(id: Int) {
+        _cardExpanded.value = if (_cardExpanded.value == id) null else id
     }
 }
