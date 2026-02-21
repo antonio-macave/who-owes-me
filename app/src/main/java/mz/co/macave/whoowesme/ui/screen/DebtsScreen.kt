@@ -100,7 +100,6 @@ fun Header(debtorName: String) {
 @Composable
 fun DebtorItem(
     viewModel: MainActivityViewModel = viewModel(),
-    debt: Debt,
     debtor: Debtor
 ) {
     val visible by viewModel.cardExpanded.collectAsStateWithLifecycle()
