@@ -44,12 +44,11 @@ import mz.co.macave.whoowesme.viewmodel.MainActivityViewModel
 
 
 @Composable
-fun DebtsList(debts: List<Debt>, debtor: Debtor) {
+fun DebtsList(debtors: List<Debtor>) {
     LazyColumn {
-        itemsIndexed(items =  debts) { index, item ->
+        itemsIndexed(items =  debtors) { index, item ->
             DebtorItem(
-                debt = debts[index],
-                debtor = debtor
+                debtor = debtors[index]
             )
         }
     }
