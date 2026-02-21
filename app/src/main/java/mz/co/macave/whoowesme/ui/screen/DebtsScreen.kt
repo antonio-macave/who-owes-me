@@ -56,6 +56,49 @@ fun DebtsList(debts: List<Debt>, debtor: Debtor) {
 }
 
 @Composable
+fun DebtorSituation(balance: Double) {
+    val debtorSituation = if (balance >= 0) stringResource(R.string.em_dia) else stringResource(R.string.em_atraso)
+    Row(
+        modifier = Modifier
+            .background(
+                color = MaterialTheme.colorScheme.surface,
+                shape = RoundedCornerShape(16.dp)
+            )
+            .padding(
+                horizontal = 16.dp,
+                vertical = 8.dp
+            )
+    ){
+        Text(
+            text = debtorSituation,
+            fontSize = 14.sp
+        )
+    }
+}
+
+
+@Composable
+fun Header(debtorName: String) {
+    Box(
+        modifier = Modifier
+            .size(32.dp)
+            .background(
+                color = MaterialTheme.colorScheme.primary,
+                shape = RoundedCornerShape(24.dp)
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = debtorName.first().toString(),
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onPrimary
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
 fun DebtorItem(
     viewModel: MainActivityViewModel = viewModel(),
     debt: Debt,
