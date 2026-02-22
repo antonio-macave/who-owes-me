@@ -41,3 +41,21 @@ fun TransactionItem(transaction: Transaction) {
     }
 }
 
+@Composable
+fun IconAndDescription(@DrawableRes iconRes: Int, description: String) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            modifier = Modifier.size(22.dp),
+            imageVector = ImageVector.vectorResource(iconRes),
+            contentDescription = null
+        )
+        Spacer(Modifier.width(4.dp))
+        Text(
+            text = description,
+            style = MaterialTheme.typography.bodyLarge,
+            fontSize = 22.sp
+        )
+    }
+}
