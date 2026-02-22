@@ -28,6 +28,12 @@ fun TransactionItem(transaction: Transaction) {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
             ) {
+                Icon(
+                    modifier = Modifier.size(16.dp),
+                    imageVector = Icons.Default.Today,
+                    contentDescription = null
+                )
+                Spacer(Modifier.width(6.dp))
                 Text(
                     text = transaction.date.toString(),
                     style = MaterialTheme.typography.bodySmall
