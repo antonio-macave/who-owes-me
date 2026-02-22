@@ -17,10 +17,15 @@ import mz.co.macave.whoowesme.model.Transaction
 @Composable
 fun TransactionItem(transaction: Transaction) {
     Card(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
     ) {
-        Column() {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
             Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
             ) {
                 Text(
