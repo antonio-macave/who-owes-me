@@ -2,7 +2,7 @@ package mz.co.macave.whoowesme.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
+import java.time.LocalDate
 
 @Entity(tableName = "transactions")
 data class Transaction(
@@ -10,6 +10,6 @@ data class Transaction(
     val type: Int = 0,
     val description: String,
     val amount: Double,
-    val date: Date,
+    val date: LocalDate,
     val debtId: Int
 )
