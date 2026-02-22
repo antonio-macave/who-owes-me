@@ -29,14 +29,10 @@ fun TransactionItem(transaction: Transaction) {
                 )
             }
 
-            Text(
-                text = transaction.amount.toString(),
-                style = MaterialTheme.typography.displayMedium
-            )
+            IconAndDescription(R.drawable.outline_money_24, transaction.amount.toString())
             Spacer(Modifier.height(4.dp))
-            Text(
-                text = transaction.description
-            )
+            IconAndDescription(R.drawable.description_24, transaction.description)
+
         }
     }
 }
