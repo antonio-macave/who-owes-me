@@ -61,6 +61,16 @@ fun TransactionItem(transaction: Transaction) {
     }
 }
 
+
+@Composable
+fun TransactionsList(transactions: List<Transaction>) {
+    LazyColumn {
+        itemsIndexed(items = transactions) { index, item ->
+            TransactionItem(transaction = item)
+        }
+    }
+}
+
 @Composable
 fun IconAndDescription(@DrawableRes iconRes: Int, description: String) {
     Row(
