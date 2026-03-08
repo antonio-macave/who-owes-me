@@ -90,7 +90,6 @@ fun Header(debtorName: String) {
         Text(
             text = debtorName.first().toString(),
             style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onPrimary
         )
     }
