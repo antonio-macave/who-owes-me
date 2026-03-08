@@ -61,11 +61,11 @@ fun DebtorSituation(balance: Double) {
         modifier = Modifier
             .background(
                 color = MaterialTheme.colorScheme.surface,
-                shape = RoundedCornerShape(16.dp)
+                shape = RoundedCornerShape(24.dp)
             )
             .padding(
-                horizontal = 16.dp,
-                vertical = 8.dp
+                horizontal = 12.dp,
+                vertical = 4.dp
             )
     ){
         Text(
