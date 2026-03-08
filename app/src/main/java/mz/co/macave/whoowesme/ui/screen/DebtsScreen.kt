@@ -111,35 +111,44 @@ fun DebtorItem(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
    ) {
-        Column {
-            Row(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
+        Row(
+            modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+        ) {
+            Header(debtor.name)
+            Spacer(Modifier.width(8.dp))
+            Column(
+
             ) {
-                Column {
-                    Text(
-                        text = "${debtor.name} ${debtor.surname}",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Normal
-                    )
-                    Text(
-                        text = "${debt.status} MZN",
-                        style = MaterialTheme.typography.bodyLarge,
-                        //color = if (debt.amount >= 0) GoodSituation else RedSituation
-                    )
+                Row {
+                    Column {
+                        Text(
+                            text = "${debtor.name} ${debtor.surname}",
+                            style = MaterialTheme.typography.displaySmallEmphasized,
+                            fontSize = 20.sp
+                        )
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            text = /* "${debt.status}  MZN" */ "20.000 MZN",
+                            style = MaterialTheme.typography.bodyMedium,
+                            //color = if (debt.amount >= 0) GoodSituation else RedSituation
+                        )
+                    }
                 }
-            }
-            AnimatedVisibility(
-                visible = visible,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically(),
-            ) {
-                BottomButtons({}) { }
-            }
+                Spacer(Modifier.height(6.dp))
+                DebtorSituation(200.00)
+                Spacer(Modifier.height(6.dp))
+                AnimatedVisibility(
+                    visible = visible == debtor.id,
+                    enter = fadeIn() + expandVertically(),
+                    exit = fadeOut() + shrinkVertically(),
+                ) {
+                    BottomButtons({}) { }
+                }
 
+            }
         }
-
     }
 }
 
