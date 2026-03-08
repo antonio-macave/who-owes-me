@@ -169,11 +169,11 @@ fun BottomButtons(onPrimaryClick: () -> Unit, onSecondaryClick: () -> Unit) {
             onClick = onSecondaryClick
         ) {
             Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.outline_time_24),
+                imageVector = ImageVector.vectorResource(R.drawable.outline_balance_24),
                 contentDescription = null
             )
             Spacer(Modifier.width(8.dp))
-            Text(text = stringResource(R.string.history))
+            Text(text = stringResource(R.string.see_debts))
         }
         Spacer(Modifier.width(16.dp))
         Button(
@@ -184,7 +184,7 @@ fun BottomButtons(onPrimaryClick: () -> Unit, onSecondaryClick: () -> Unit) {
                 contentDescription = null
             )
             Spacer(Modifier.width(8.dp))
-            Text(text = stringResource(R.string.transaction))
+            Text(text = stringResource(R.string.debt))
         }
     }
 }
