@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun format(date: String): String {
+fun formatDate(date: String): String {
     val inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     val outputFormat = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault())
 
