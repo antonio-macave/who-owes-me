@@ -8,7 +8,7 @@ import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun format(date: String): String {
-    val inputFormat = DateTimeFormatter.ofPattern("yyyy-MMM-dd")
+    val inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     val outputFormat = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault())
 
     val parsedDate = LocalDate.parse(date, inputFormat)
