@@ -161,7 +161,6 @@ fun DebtInfo(debt: Debt) {
 fun BottomButtons(onPrimaryClick: () -> Unit, onSecondaryClick: () -> Unit) {
     Row(
         modifier = Modifier
-            .padding(16.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.End
     ) {
@@ -175,7 +174,7 @@ fun BottomButtons(onPrimaryClick: () -> Unit, onSecondaryClick: () -> Unit) {
             Spacer(Modifier.width(8.dp))
             Text(text = stringResource(R.string.see_debts))
         }
-        Spacer(Modifier.width(16.dp))
+        Spacer(Modifier.width(8.dp))
         Button(
             onClick = onPrimaryClick
         ) {
