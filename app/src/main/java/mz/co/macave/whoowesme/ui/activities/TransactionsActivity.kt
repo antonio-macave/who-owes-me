@@ -27,7 +27,7 @@ class TransactionsActivity : ComponentActivity() {
             WhoOwesMeTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    topBar = { TransactionsTopAppBar("Transactions") { finish() } }
+                    topBar = { TransactionsTopAppBar(debtorName) { finish() } }
                 ) { innerPadding ->
 
                 }
@@ -38,9 +38,13 @@ class TransactionsActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun TransactionsTopAppBar(title: String, onNavigationButtonClick: () -> Unit) {
+fun TransactionsTopAppBar(title: String?, onNavigationButtonClick: () -> Unit) {
     TopAppBar(
-        title = { Text(text = title) },
+        title = {
+            if (title != null) {
+                Text(text = title)
+            }
+        },
         navigationIcon = {
             IconButton(onClick = onNavigationButtonClick) {
                 Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
