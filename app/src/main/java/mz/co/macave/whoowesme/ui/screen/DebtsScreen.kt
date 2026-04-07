@@ -81,7 +81,7 @@ fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
             },
             label = { Text(text = stringResource(R.string.all)) },
             leadingIcon = {
-                if (all) {
+                AnimatedVisibility(all) {
                     Icon(Icons.Default.Check, contentDescription = null)
                 }
             }
@@ -97,7 +97,7 @@ fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
             },
             label = { Text(text = stringResource(R.string.debt_status_pending)) },
             leadingIcon = {
-                if (pending) {
+                AnimatedVisibility(pending) {
                     Icon(Icons.Default.Check, contentDescription = null)
                 }
             }
@@ -113,7 +113,7 @@ fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
             },
             label = { Text(text = stringResource(R.string.debt_status_paid)) },
             leadingIcon = {
-                if (paid) {
+                AnimatedVisibility (paid) {
                     Icon(Icons.Default.Check, contentDescription = null)
                 }
             }
@@ -129,7 +129,7 @@ fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
             },
             label = { Text(text = stringResource(R.string.debt_status_overdue)) },
             leadingIcon = {
-                if (overdue) {
+                AnimatedVisibility (overdue) {
                     Icon(Icons.Default.Check, contentDescription = null)
                 }
             }
