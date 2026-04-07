@@ -77,7 +77,15 @@ fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
                 pending = newValue
                 paid = newValue
                 overdue = newValue
-                onClick()
+
+                val newFilteredDebts = viewModel.filterDebts(
+                    debts = debts,
+                    all = all,
+                    pending = pending,
+                    paid = paid,
+                    overdue = overdue
+                )
+                onClick(newFilteredDebts)
             },
             label = { Text(text = stringResource(R.string.all)) },
             leadingIcon = {
@@ -93,7 +101,14 @@ fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
             selected = pending,
             onClick = {
                 pending = !pending
-                onClick()
+                val newFilteredDebts = viewModel.filterDebts(
+                    debts = debts,
+                    all = pending && paid && overdue,
+                    pending = pending,
+                    paid = paid,
+                    overdue = overdue
+                )
+                onClick(newFilteredDebts)
             },
             label = { Text(text = stringResource(R.string.debt_status_pending)) },
             leadingIcon = {
@@ -109,7 +124,14 @@ fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
             selected = paid,
             onClick = {
                 paid = !paid
-                onClick()
+                val newFilteredDebts = viewModel.filterDebts(
+                    debts = debts,
+                    all = pending && paid && overdue,
+                    pending = pending,
+                    paid = paid,
+                    overdue = overdue
+                )
+                onClick(newFilteredDebts)
             },
             label = { Text(text = stringResource(R.string.debt_status_paid)) },
             leadingIcon = {
@@ -125,7 +147,14 @@ fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
             selected = overdue,
             onClick = {
                 overdue = !overdue
-                onClick()
+                val newFilteredDebts = viewModel.filterDebts(
+                    debts = debts,
+                    all = pending && paid && overdue,
+                    pending = pending,
+                    paid = paid,
+                    overdue = overdue
+                )
+                onClick(newFilteredDebts)
             },
             label = { Text(text = stringResource(R.string.debt_status_overdue)) },
             leadingIcon = {
