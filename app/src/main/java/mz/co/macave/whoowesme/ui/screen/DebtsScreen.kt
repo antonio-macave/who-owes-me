@@ -53,3 +53,86 @@ fun DebtStatus(debtStatus: Int) {
         Text(text = debtStatusText)
     }
 }
+
+@Composable
+fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
+
+    val scrollState = rememberScrollState()
+
+    var pending by remember { mutableStateOf(false) }
+    var paid by remember { mutableStateOf(false) }
+    var overdue by remember { mutableStateOf(false) }
+
+    val all = pending && paid && overdue
+
+    Row(
+        modifier = Modifier
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .horizontalScroll(state = scrollState)
+    ) {
+        FilterChip(
+            selected = all,
+            onClick = {
+                val newValue = !all
+                pending = newValue
+                paid = newValue
+                overdue = newValue
+                onClick()
+            },
+            label = { Text(text = stringResource(R.string.all)) },
+            leadingIcon = {
+                if (all) {
+                    Icon(Icons.Default.Check, contentDescription = null)
+                }
+            }
+        )
+
+        Spacer(Modifier.width(8.dp))
+
+        FilterChip(
+            selected = pending,
+            onClick = {
+                pending = !pending
+                onClick()
+            },
+            label = { Text(text = stringResource(R.string.debt_status_pending)) },
+            leadingIcon = {
+                if (pending) {
+                    Icon(Icons.Default.Check, contentDescription = null)
+                }
+            }
+        )
+
+        Spacer(Modifier.width(8.dp))
+
+        FilterChip(
+            selected = paid,
+            onClick = {
+                paid = !paid
+                onClick()
+            },
+            label = { Text(text = stringResource(R.string.debt_status_paid)) },
+            leadingIcon = {
+                if (paid) {
+                    Icon(Icons.Default.Check, contentDescription = null)
+                }
+            }
+        )
+
+        Spacer(Modifier.width(8.dp))
+
+        FilterChip(
+            selected = overdue,
+            onClick = {
+                overdue = !overdue
+                onClick()
+            },
+            label = { Text(text = stringResource(R.string.debt_status_overdue)) },
+            leadingIcon = {
+                if (overdue) {
+                    Icon(Icons.Default.Check, contentDescription = null)
+                }
+            }
+        )
+    }
+}
