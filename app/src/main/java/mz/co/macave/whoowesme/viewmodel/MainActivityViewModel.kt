@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import mz.co.macave.whoowesme.model.Debt
+import mz.co.macave.whoowesme.util.DebtStatus
 
 class MainActivityViewModel: ViewModel() {
 
@@ -13,6 +15,17 @@ class MainActivityViewModel: ViewModel() {
     private val _cardExpanded = MutableStateFlow<Int?>(null)
     val cardExpanded: StateFlow<Int?> get() = _cardExpanded.asStateFlow()
 
+
+    fun filterDebts(debts: List<Debt>, all: Boolean, pending: Boolean, paid: Boolean, overdue: Boolean): List<Debt> {
+        return debts.filter { debt ->
+            when (debt.status) {
+                DebtStatus.PENDING.code -> pending
+                DebtStatus.PAID.code -> paid
+                DebtStatus.OVERDUE.code -> overdue
+                else -> all
+            }
+        }
+    }
 
     fun updateFabMenuExpanded(expanded: Boolean) {
         _fabMenuExpanded.value = expanded
