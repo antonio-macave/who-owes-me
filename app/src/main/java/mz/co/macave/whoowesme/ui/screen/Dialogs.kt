@@ -23,10 +23,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import mz.co.macave.whoowesme.R
+import mz.co.macave.whoowesme.util.SortOption
 
 @Composable
 fun SortByDialog(isOpen: Boolean, onDismiss: () -> Unit) {
@@ -50,8 +53,8 @@ fun SortByContent(onDismiss: () -> Unit) {
         Text(
             modifier = Modifier
                 .padding(16.dp),
-            text = "Ordenar por...",
-             color = AlertDialogDefaults.textContentColor,
+            text = stringResource(R.string.sort_by_title),
+            color = AlertDialogDefaults.textContentColor,
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(Modifier.height(8.dp))
@@ -72,7 +75,11 @@ fun SortByContent(onDismiss: () -> Unit) {
                         selected = (selectedOption == item),
                         onClick = { }
                     )
-                    Text(text = item)
+                    Text(text = when (item) {
+                        SortOption.NAME -> stringResource(R.string.sort_by_option_name)
+                        SortOption.DATE -> stringResource(R.string.sort_by_option_date)
+                        SortOption.AMOUNT -> stringResource(R.string.sort_by_option_amount)
+                    })
                 }
             }
             HorizontalDivider()
