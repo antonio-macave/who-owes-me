@@ -20,4 +20,9 @@
     <string name="debt_status_paid">Paga</string>
     <string name="title_activity_transactions">Transactions</string>
     <string name="title_activity_debtors">DebtorsActivity</string>
+    <string name="all">Todas</string>
+    <string name="sort_by_title">Ordenar por</string>
+    <string name="sort_by_option_name">Nome</string>
+    <string name="sort_by_option_date">Data</string>
+    <string name="sort_by_option_amount">Valor</string>
 </resources>
