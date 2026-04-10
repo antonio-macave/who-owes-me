@@ -32,18 +32,18 @@ import mz.co.macave.whoowesme.R
 import mz.co.macave.whoowesme.util.SortOption
 
 @Composable
-fun SortByDialog(isOpen: Boolean, onDismiss: () -> Unit) {
+fun SortByDialog(isOpen: Boolean, onDismiss: () -> Unit, onConfirmation: (Int) -> Unit) {
     if (isOpen) {
         Dialog(onDismissRequest = onDismiss) {
-            SortByContent(onDismiss = onDismiss)
+            SortByContent(onDismiss = onDismiss, onConfirmation = onConfirmation)
         }
     }
 }
 
 @Composable
-fun SortByContent(onDismiss: () -> Unit) {
-    val options = listOf("Nome", "Data", "Valor")
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(options[0]) }
+fun SortByContent(onDismiss: () -> Unit, onConfirmation: (Int) -> Unit) {
+    val options = SortOption.entries
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(SortOption.NAME) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
