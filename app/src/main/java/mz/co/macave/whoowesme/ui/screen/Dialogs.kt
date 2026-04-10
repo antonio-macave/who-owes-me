@@ -94,7 +94,10 @@ fun SortByContent(onDismiss: () -> Unit, onConfirmation: (Int) -> Unit) {
                 ) { Text(text = "Cancel") }
                 Spacer(Modifier.width(8.dp))
                 TextButton(
-                    onClick = { }
+                    onClick = {
+                        onConfirmation(selectedOption.option)
+                        onDismiss()
+                    }
                 ) { Text(text = "Ok") }
             }
         }
