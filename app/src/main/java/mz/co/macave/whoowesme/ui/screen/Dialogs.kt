@@ -31,10 +31,8 @@ import androidx.compose.ui.window.Dialog
 @Composable
 fun SortByDialog(isOpen: Boolean, onDismiss: () -> Unit) {
     if (isOpen) {
-        Dialog(
-            onDismiss
-        ) {
-            SortByContent() { }
+        Dialog(onDismissRequest = onDismiss) {
+            SortByContent(onDismiss = onDismiss)
         }
     }
 }
