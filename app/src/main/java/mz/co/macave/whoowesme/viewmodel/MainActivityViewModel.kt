@@ -15,6 +15,10 @@ class MainActivityViewModel: ViewModel() {
     private val _cardExpanded = MutableStateFlow<Int?>(null)
     val cardExpanded: StateFlow<Int?> get() = _cardExpanded.asStateFlow()
 
+    private val _showSortDebtsDialog = MutableStateFlow(false)
+    val showSortDebtsDialog: StateFlow<Boolean> get() = _showSortDebtsDialog.asStateFlow()
+
+
 
     fun filterDebts(debts: List<Debt>, all: Boolean, pending: Boolean, paid: Boolean, overdue: Boolean): List<Debt> {
         return debts.filter { debt ->
@@ -26,6 +30,11 @@ class MainActivityViewModel: ViewModel() {
             }
         }
     }
+
+    fun updateShowSortDebtsDialog(show: Boolean) {
+        _showSortDebtsDialog.value = show
+    }
+
 
     fun updateFabMenuExpanded(expanded: Boolean) {
         _fabMenuExpanded.value = expanded
