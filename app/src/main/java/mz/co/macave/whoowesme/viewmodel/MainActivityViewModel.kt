@@ -18,7 +18,14 @@ class MainActivityViewModel: ViewModel() {
     private val _showSortDebtsDialog = MutableStateFlow(false)
     val showSortDebtsDialog: StateFlow<Boolean> get() = _showSortDebtsDialog.asStateFlow()
 
-
+    fun sortDebts(debts: List<Debt>, sortBy: Int): List<Debt> {
+        return when (sortBy) {
+            SortOption.NAME.option -> debts.sortedBy { it.description }
+            SortOption.DATE.option -> debts.sortedBy { it.dueTo }
+            SortOption.AMOUNT.option -> debts.sortedBy { it.amount }
+            else -> debts
+        }
+    }
 
     fun filterDebts(debts: List<Debt>, all: Boolean, pending: Boolean, paid: Boolean, overdue: Boolean): List<Debt> {
         return debts.filter { debt ->
