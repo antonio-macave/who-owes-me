@@ -77,7 +77,6 @@ fun SortByContent(onDismiss: () -> Unit) {
                     Text(text = item)
                 }
             }
-            Spacer(Modifier.height(8.dp))
             HorizontalDivider()
             Row(
                 modifier = Modifier
