@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 data class DebtorWithDebts(
-    @Embedded val debt: Debt,
+    @Embedded val debtor: Debtor,
     @Relation(
         parentColumn = "id",
         entityColumn = "id"
