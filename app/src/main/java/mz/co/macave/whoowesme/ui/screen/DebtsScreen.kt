@@ -1,11 +1,42 @@
 package mz.co.macave.whoowesme.ui.screen
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Card
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import mz.co.macave.whoowesme.R
 import mz.co.macave.whoowesme.model.Debt
+import mz.co.macave.whoowesme.util.DebtStatus
 import mz.co.macave.whoowesme.util.toMzn
+import mz.co.macave.whoowesme.viewmodel.MainActivityViewModel
 
 @Composable
 fun DebtItem(debt: Debt) {
@@ -55,7 +86,9 @@ fun DebtStatus(debtStatus: Int) {
 }
 
 @Composable
-fun DebtFilter(debts: List<Debt>, onClick: () -> Unit) {
+fun DebtFilter(debts: List<Debt>, onClick: (List<Debt>) -> Unit) {
+
+    val viewModel: MainActivityViewModel = viewModel()
 
     val scrollState = rememberScrollState()
 
