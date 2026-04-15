@@ -39,9 +39,27 @@ import mz.co.macave.whoowesme.util.toMzn
 import mz.co.macave.whoowesme.viewmodel.MainActivityViewModel
 
 @Composable
-fun DebtItem(debt: Debt) {
-    Card {
-        Column {
+fun DebtItem(debt: Debt, onClick: (Debt) -> Unit) {
+    Card(
+        modifier = Modifier
+            .padding(
+                horizontal = 16.dp,
+                vertical = 8.dp
+            )
+            .clickable(enabled = true, onClick = { onClick(debt) })
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.End
+            ) {
+                DebtStatus(debt.status)
+            }
+            Text(text = debt.amount.toMzn())
             Text(text = debt.description)
             Text(text = debt.amount.toMzn())
             Text(text = debt.status.toString())
