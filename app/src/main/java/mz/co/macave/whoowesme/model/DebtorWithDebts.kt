@@ -7,7 +7,7 @@ data class DebtorWithDebts(
     @Embedded val debtor: Debtor,
     @Relation(
         parentColumn = "id",
-        entityColumn = "id"
+        entityColumn = "debtorId"
     )
     val debts: List<Debt>
 )
