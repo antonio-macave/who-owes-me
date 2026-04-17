@@ -12,9 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import mz.co.macave.whoowesme.R
-import mz.co.macave.whoowesme.ui.activities.ui.theme.WhoOwesMeTheme
+import mz.co.macave.whoowesme.ui.theme.WhoOwesMeTheme
 import mz.co.macave.whoowesme.ui.screen.AppBar
 import mz.co.macave.whoowesme.ui.screen.CreateDebt
+
 import mz.co.macave.whoowesme.viewmodel.CreateDebtViewModel
 
 class CreateDebtActivity : ComponentActivity() {

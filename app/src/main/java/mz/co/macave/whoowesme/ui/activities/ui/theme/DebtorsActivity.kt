@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import mz.co.macave.whoowesme.ui.activities.ui.theme.ui.theme.WhoOwesMeTheme
+import mz.co.macave.whoowesme.ui.theme.WhoOwesMeTheme
 
 class DebtorsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

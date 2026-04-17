@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import mz.co.macave.whoowesme.model.Debt
 import mz.co.macave.whoowesme.util.DebtStatus
+import mz.co.macave.whoowesme.util.SortOption
 
 class MainActivityViewModel: ViewModel() {
 

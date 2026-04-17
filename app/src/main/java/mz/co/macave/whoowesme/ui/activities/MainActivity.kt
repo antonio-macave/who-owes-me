@@ -1,10 +1,12 @@
 package mz.co.macave.whoowesme.ui.activities
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,8 +44,10 @@ import mz.co.macave.whoowesme.ui.screen.DebtsList
 import mz.co.macave.whoowesme.ui.screen.DueDate
 import mz.co.macave.whoowesme.ui.theme.WhoOwesMeTheme
 import mz.co.macave.whoowesme.viewmodel.MainActivityViewModel
+import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -75,7 +79,8 @@ class MainActivity : ComponentActivity() {
                         amount = 20000.0,
                         description = "Hello",
                         additionalNotes = "World",
-                        debtorId = 1
+                        debtorId = 1,
+                        dueTo = LocalDate.now()
                     )
 
                     val debtor = Debtor(
@@ -83,7 +88,7 @@ class MainActivity : ComponentActivity() {
                         name = "Name",
                         surname = "Surname",
                         contactNumber = "821234567",
-                        debts = listOf(debt)
+                        //debts = listOf(debt)
                     )
 
                     val list = listOf(debt)
@@ -93,7 +98,7 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding)
                             .fillMaxHeight()
                     ) {
-                        DebtsList(list, debtor)
+                        DebtsList(list)
                     }
 
                 }

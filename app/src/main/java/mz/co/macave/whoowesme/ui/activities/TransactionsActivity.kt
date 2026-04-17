@@ -16,7 +16,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import mz.co.macave.whoowesme.ui.activities.ui.theme.WhoOwesMeTheme
+import androidx.compose.ui.res.stringResource
+import mz.co.macave.whoowesme.R
+import mz.co.macave.whoowesme.ui.theme.WhoOwesMeTheme
 
 class TransactionsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +29,7 @@ class TransactionsActivity : ComponentActivity() {
             WhoOwesMeTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    topBar = { TransactionsTopAppBar(debtorName) { finish() } }
+                    topBar = { TransactionsTopAppBar(stringResource(R.string.title_activity_transactions)) { finish() } }
                 ) { innerPadding ->
 
                 }
