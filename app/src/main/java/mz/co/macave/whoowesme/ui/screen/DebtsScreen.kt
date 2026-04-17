@@ -110,9 +110,9 @@ fun DebtFilter(debts: List<Debt>, onClick: (List<Debt>) -> Unit) {
 
     val scrollState = rememberScrollState()
 
-    var pending by remember { mutableStateOf(false) }
-    var paid by remember { mutableStateOf(false) }
-    var overdue by remember { mutableStateOf(false) }
+    var pending by remember { mutableStateOf(true) }
+    var paid by remember { mutableStateOf(true) }
+    var overdue by remember { mutableStateOf(true) }
 
     val all = pending && paid && overdue
 
