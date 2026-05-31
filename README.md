@@ -2,6 +2,22 @@
 
 **Quem Me Deve** helps you keep your finances organized: record debts, payments, and balances easily. Track who owes you, manage transactions, and maintain a clear history of all financial interactions.
 
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=mz.co.macave.quemmedeve)
+
+---
+## Screenshots
+
+<div style="text-align: center">
+  <img src="screenshots/home_screen.jpg" alt="Home screen" width="200" style="margin: 8px"/>
+  <img src="screenshots/transactions_screen.jpg" alt="Transactions screen" width="200" style="margin: 8px"/>
+  <img src="screenshots/add_transaction_screen.jpg" alt="Add transaction screen" width="200" style="margin: 8px"/>
+  <img src="screenshots/clients_screen.jpg" alt="Clients screen" width="200" style="margin: 8px"/>
+</div>
+
+
+---
+
+
 ## Features
 
 - **Debt Tracking**: Log who owes you (or who you owe), with detailed information.
