@@ -68,7 +68,8 @@ fun TotalAndPaiAmount(
                     shape = RoundedCornerShape(8.dp)
                 )
                 .padding(16.dp),
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = stringResource(R.string.debts),
