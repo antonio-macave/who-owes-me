@@ -1,5 +1,68 @@
 package mz.co.macave.quemmedeve.ui.screen
 
+@Composable
+fun ActionButtonRow(
+    onSeeDebts: () -> Unit,
+    onNewDebt: () -> Unit,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        ActionButton(
+            icon = Icons.AutoMirrored.Filled.List,
+            text = stringResource(R.string.see_debts),
+            onClick = { onSeeDebts() }
+        )
+
+        ActionButton(
+            icon = Icons.Default.Add,
+            text = stringResource(R.string.new_debt),
+            onClick = { onNewDebt() }
+        )
+        ActionButton(
+            icon = Icons.Default.Edit,
+            text = stringResource(R.string.edit),
+            onClick = { onEdit() }
+        )
+
+        ActionButton(
+            icon = Icons.Default.Delete,
+            text = stringResource(R.string.delete),
+            onClick = { onDelete() }
+        )
+    }
+}
+
+@Composable
+fun ActionButton(
+    icon: ImageVector,
+    text: String,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .padding(4.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        IconButton(
+            onClick = { onClick() }
+        ) {
+            Icon(icon, contentDescription = text)
+        }
+        Text(
+            text = text,
+            maxLines = 1,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.labelSmall
+        )
+    }
+}
 
 @Composable
 fun TotalAndPaiAmount(
