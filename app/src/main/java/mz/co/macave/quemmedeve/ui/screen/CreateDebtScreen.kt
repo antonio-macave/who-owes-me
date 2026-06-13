@@ -3,6 +3,7 @@ package mz.co.macave.quemmedeve.ui.screen
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -122,7 +123,11 @@ fun ExistingDebtorSelector(viewModel: CreateDebtViewModel) {
     val suggestions by viewModel.debtors.collectAsStateWithLifecycle()
     var expanded by remember { mutableStateOf(false) }
 
-    Column {
+    Box(
+        modifier = Modifier
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .fillMaxWidth()
+    ) {
         ExposedDropdownMenuBox(
             expanded = expanded,
             onExpandedChange = { expanded = !expanded },
@@ -130,7 +135,6 @@ fun ExistingDebtorSelector(viewModel: CreateDebtViewModel) {
 
             TextField(
                 modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 8.dp)
                     .fillMaxWidth()
                     .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryEditable, true),
                 value = if (selectedDebtor != null) "${selectedDebtor?.name} ${selectedDebtor?.surname}" else "",
