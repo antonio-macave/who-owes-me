@@ -51,6 +51,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -159,7 +160,13 @@ fun ExistingDebtorSelector(viewModel: CreateDebtViewModel) {
                 suggestions.forEach { item ->
                     DropdownMenuItem(
                         modifier = Modifier.background(color = if ("${item.name} ${item.surname}" == text) MaterialTheme.colorScheme.primary.copy(alpha = 0.1f) else MaterialTheme.colorScheme.background),
-                        text = { Text(text = "${item.name} ${item.surname}") },
+                        text = {
+                            Text(
+                                text = "${item.name} ${item.surname}",
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        },
                         leadingIcon = { if ("${item.name} ${item.surname}" == "${selectedDebtor?.name} ${selectedDebtor?.surname}") { Icon(imageVector = Icons.Default.Check, contentDescription = null) } },
                         onClick = {
                             text = "${item.name} ${item.surname}"
