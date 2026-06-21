@@ -52,7 +52,6 @@ class TransactionsActivity : ComponentActivity() {
 
             val db = DatabaseProvider.getDatabase(applicationContext)
             val transactionDao = db.transactionDao()
-            val debtorDao = db.debtorDao()
             val debtDao = db.debtDao()
             val transactionRepository = TransactionRepository(transactionDao)
             val debtRepository = DebtRepository(debtDao)
