@@ -19,7 +19,6 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -28,14 +27,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import mz.co.macave.quemmedeve.R
 import mz.co.macave.quemmedeve.util.SortOption
-import mz.co.macave.quemmedeve.viewmodel.MainActivityViewModel
 
 @Composable
 fun SortByDialog(
-    viewModel: MainActivityViewModel,
+    activeOption: SortOption,
     isOpen: Boolean,
     onDismiss: () -> Unit,
     onConfirmation: (SortOption) -> Unit
@@ -43,7 +40,7 @@ fun SortByDialog(
     if (isOpen) {
         Dialog(onDismissRequest = onDismiss) {
             SortByContent(
-                viewModel = viewModel,
+                activeOption = activeOption,
                 onDismiss = onDismiss,
                 onConfirmation = onConfirmation
             )
@@ -52,9 +49,8 @@ fun SortByDialog(
 }
 
 @Composable
-fun SortByContent(viewModel: MainActivityViewModel, onDismiss: () -> Unit, onConfirmation: (SortOption) -> Unit) {
+fun SortByContent(activeOption: SortOption, onDismiss: () -> Unit, onConfirmation: (SortOption) -> Unit) {
     val options = SortOption.entries
-    val activeOption by viewModel.sortByOption.collectAsStateWithLifecycle()
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(activeOption) }
 
     Card(
