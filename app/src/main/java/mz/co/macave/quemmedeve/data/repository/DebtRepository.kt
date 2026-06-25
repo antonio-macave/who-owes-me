@@ -36,6 +36,10 @@ class DebtRepository(private val debtDao: DebtDao) {
         return debtDao.loadAllDebtsById(debtorId)
     }
 
+    fun loadAllDebtsByDebtorId(debtorIds: IntArray): Flow<List<DebtCardItem>> {
+        return debtDao.findDebtsWithDebtorNameByDebtorId(debtorIds)
+    }
+
     suspend fun deleteDebt(debt: Debt) {
         debtDao.delete(debt)
     }
