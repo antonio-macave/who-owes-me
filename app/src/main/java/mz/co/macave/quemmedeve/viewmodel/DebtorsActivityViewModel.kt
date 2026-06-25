@@ -54,8 +54,8 @@ class DebtorsActivityViewModel(val debtorsRepository: DebtorRepository) : ViewMo
         _cardExpanded.value = if (_cardExpanded.value == id) null else id
     }
 
-    fun getTotalDebt(debtorWithDebts: DebtorWithDebts): Double {
-        return debtorWithDebts.debts.sumOf { it.amount - it.paidAmount }
+    fun getTotalDebt(debts: List<Debt>): Double {
+        return debts.sumOf { it.amount - it.paidAmount }
     }
 
     fun deleteDebtor(debtor: Debtor) {
